@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[227]:
+# In[19]:
 
 
 import pandas as pd 
@@ -18,20 +18,20 @@ print(data.sheet_names) #this returns the all the sheets in the excel file
 
 # # Task 1
 
-# In[228]:
+# In[20]:
 
 
 df1 = data.parse("Task 1_cleaned")
 df1.info()
 
 
-# In[229]:
+# In[21]:
 
 
 df1.head(10)
 
 
-# In[230]:
+# In[63]:
 
 
 data_mean = st.mean(df1.Sales)
@@ -44,7 +44,7 @@ data_skew = skew(df1.Sales)
 
 print ("Mean is :", data_mean)
 print ("Median is :", data_median)
-print ("Mode is :", data_mode)
+print ("Mode is :", data_mode,"This is not exact answer since all the number only appears once")
 print ("Maximum Value is :", data_max)
 print ("Minimum Value is :", data_min)
 print ("Standard Deviation is :", data_stdev)
@@ -53,7 +53,7 @@ print ("Skewness is :", data_skew)
 
 # ## Virtrualizaiton the distribution of the sales data
 
-# In[231]:
+# In[23]:
 
 
 sns.set_theme(style="whitegrid")
@@ -63,7 +63,7 @@ ax = sns.boxplot(orient = "h", data=df1.Sales)
 ax = sns.swarmplot(orient = "h",data=df1.Sales, color=".25")
 
 
-# In[232]:
+# In[24]:
 
 
 plt.figure (figsize=(15,6))
@@ -81,33 +81,33 @@ plt.show()
 
 # # Task 2
 
-# In[233]:
+# In[25]:
 
 
 df2 = data.parse("Task 2_cleaned")
 df2.info()
 
 
-# In[234]:
+# In[26]:
 
 
 df2.head(10)
 
 
-# In[235]:
+# In[39]:
 
 
 df2["Customer Conversion Rate"] = df2["Number of Customer Made a Purchased"]/df2["Total Number of Customer Visited"]
 df2.head()
 
 
-# In[236]:
+# In[42]:
 
 
 data_mean = st.mean(df2["Customer Conversion Rate"])
 data_median = st.median(df2["Customer Conversion Rate"])
-data_mode = st.mode(df2["Customer Conversion Rate"])
-data_range = max(df2["Customer Conversion Rate"])-min(df["Customer Conversion Rate"])
+data_mode = st.multimode(df2["Customer Conversion Rate"])
+data_range = max(df2["Customer Conversion Rate"])-min(df2["Customer Conversion Rate"])
 data_stdev = st.stdev(df2["Customer Conversion Rate"])
 
 print ("Mean is :", data_mean)
@@ -117,7 +117,7 @@ print ("Range(max-min) is :", data_range)
 print ("Standard Deviation is :", data_stdev)
 
 
-# In[237]:
+# In[38]:
 
 
 sns.set_theme(style="whitegrid")
@@ -134,20 +134,20 @@ ax = sns.swarmplot(orient = "h",data=df2["Customer Conversion Rate"], color=".2"
 
 # ## Task 3
 
-# In[238]:
+# In[29]:
 
 
 df3 = data.parse("Task 3_cleaned")
 df3.info()
 
 
-# In[239]:
+# In[30]:
 
 
 df3.head(10)
 
 
-# In[240]:
+# In[31]:
 
 
 x = df3["Ice Crem Sale (X)"]
@@ -159,7 +159,7 @@ plt.show()
 
 # #### Method 1
 
-# In[241]:
+# In[32]:
 
 
 np.corrcoef(df3["Ice Crem Sale (X)"], df3["Sunglasses Sold (Y)"])
@@ -167,13 +167,13 @@ np.corrcoef(df3["Ice Crem Sale (X)"], df3["Sunglasses Sold (Y)"])
 
 # #### Method 2
 
-# In[242]:
+# In[33]:
 
 
 df3["Ice Crem Sale (X)"].corr(df3["Sunglasses Sold (Y)"])
 
 
-# In[243]:
+# In[34]:
 
 
 df3["Sunglasses Sold (Y)"].corr(df3["Ice Crem Sale (X)"])
@@ -181,7 +181,7 @@ df3["Sunglasses Sold (Y)"].corr(df3["Ice Crem Sale (X)"])
 
 # #### Method 3
 
-# In[244]:
+# In[35]:
 
 
 df3.corr()
@@ -189,7 +189,7 @@ df3.corr()
 
 # #### Method 4
 
-# In[245]:
+# In[36]:
 
 
 sns.heatmap(df3.corr(),annot=True);
