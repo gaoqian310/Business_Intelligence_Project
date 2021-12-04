@@ -78,6 +78,7 @@ plt.show()
 # 
 # skewness is 0.17
 # 
+# As a company, it means more than half of the employees's sales are below average, which require more attention on their performance; and less than half of employees total contribute more than half of the sales, which need to keep up.
 
 # # Task 2
 
